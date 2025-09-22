@@ -116,7 +116,16 @@ function App({ pageProps }) {
         const link = document.createElement("link");
         link.setAttribute("rel", "alternate");
         link.setAttribute("hreflang", lang);
-        link.setAttribute("href", `/${lang}${window.location.pathname.substring(3)}`); // Adjust path for current language
+
+        const currentPath = window.location.pathname;
+        let newHref;
+        if (currentPath === '/') {
+          newHref = `/${lang}/`;
+        } else {
+          newHref = `/${lang}${currentPath.substring(3)}`;
+        }
+
+        link.setAttribute("href", newHref);
         return link.outerHTML;
       })
       .join("");
