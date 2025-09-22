@@ -1,0 +1,73 @@
+{
+  // 🌍 Environments ESLint should be aware of
+  "env": {
+    "browser": true,   // Enables browser globals like window, document
+    "node": true,      // Enables Node.js globals like process, __dirname
+    "es2021": true     // Uses ES2021 globals and syntax
+  },
+
+  // 📦 Base configurations to extend from
+  "extends": [
+    "eslint:recommended",          // Core ESLint recommended rules
+    "plugin:react/recommended",    // Recommended React rules
+    "plugin:prettier/recommended", // Integrates Prettier formatting with ESLint
+    "plugin:i18next/recommended"   // Adds recommended i18n rules (from eslint-plugin-i18next)
+  ],
+
+  // 📝 Parser options (what syntax ESLint can parse)
+  "parserOptions": {
+    "ecmaFeatures": {
+      "jsx": true                  // Enable JSX parsing (needed for React)
+    },
+    "ecmaVersion": 12,             // ECMAScript 2021 features
+    "sourceType": "module"         // Allows ES module imports/exports
+  },
+
+  // 🔌 Plugins extend ESLint with extra rules
+  "plugins": [
+    "react",                       // React-specific linting rules
+    "prettier",                    // Run Prettier as part of linting
+    "i18next"                      // i18next rules for enforcing translations
+  ],
+
+  // ⚖️ Rules configure specific linting behavior
+  "rules": {
+    // Enforce Prettier formatting as errors
+    "prettier/prettier": [
+      "error",
+      {
+        "singleQuote": false        // Force use of double quotes everywhere
+      }
+    ],
+
+    // React 17+ doesn’t need `import React` in JSX files, so disable warning
+    "react/react-in-jsx-scope": "off",
+
+    // Enforce double quotes for strings
+    "quotes": ["error", "double", { "avoidEscape": true }],
+
+    // 🚨 i18n rule: forbid hardcoded text in JSX — requires translation keys
+    "i18next/no-literal-string": [
+      "error",
+      {
+        "markupOnly": true,        // Only check JSX text (not variables or logic)
+        "ignoreAttribute": [
+          "id",
+          "className",
+          "data-testid"
+        ]                          // Ignore common attributes that can have plain text
+      }
+    ]
+  },
+
+  // ⚙️ Extra settings passed to plugins
+  "settings": {
+    "react": {
+      "version": "detect"          // Automatically detect React version
+    },
+    "i18n": {
+      // ✅ Define all required language keys — your project must support these
+      "requiredLangs": ["en", "es", "fr", "de", "zh", "ru", "uk", "vi"]
+    }
+  }
+}
