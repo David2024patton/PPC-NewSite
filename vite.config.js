@@ -4,7 +4,6 @@ import { createLogger, defineConfig } from "vite";
 import inlineEditPlugin from "./plugins/visual-editor/vite-plugin-react-inline-editor.js";
 import editModeDevPlugin from "./plugins/visual-editor/vite-plugin-edit-mode.js";
 import iframeRouteRestorationPlugin from "./plugins/vite-plugin-iframe-route-restoration.js";
-import vike from "vike/plugin";
 
 const isDev = process.env.NODE_ENV !== "production";
 
@@ -208,7 +207,6 @@ export default defineConfig({
   plugins: [
     ...(isDev ? [inlineEditPlugin(), editModeDevPlugin(), iframeRouteRestorationPlugin()] : []),
     react(),
-    vike(),
     addTransformIndexHtml,
   ],
   server: {
