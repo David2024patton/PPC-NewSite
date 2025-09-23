@@ -85,7 +85,7 @@ console.error = function(...args) {
   for (let i = 0; i < args.length; i++) {
     const arg = args[i];
     if (arg instanceof Error) {
-      errorString = arg.stack || \`\${arg.name}: \${arg.message}\`;
+      errorString = arg.stack || arg.name + ": " + arg.message;
       break;
     }
   } 
@@ -125,7 +125,7 @@ window.fetch = function(...args) {
         const responseClone = response.clone();
         const errorFromRes = await responseClone.text();
         const requestUrl = response.url;
-        console.error(\`Fetch error from \${requestUrl}: \${errorFromRes}\`);
+        console.error("Fetch error from " + requestUrl + ": " + errorFromRes);
       }
 
       return response;
@@ -217,6 +217,7 @@ export default defineConfig({
       "Cross-Origin-Embedder-Policy": "credentialless",
     },
     allowedHosts: true,
+    port: 3697,
   },
   resolve: {
     extensions: [".jsx", ".js", ".tsx", ".ts", ".json"],

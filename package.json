@@ -36,8 +36,7 @@
     "react-router-dom": "6.16.0",
     "tailwind-merge": "^1.14.0",
     "tailwindcss-animate": "^1.0.7",
-    "vike": "^0.4.240",
-    "i18next-browser-languagedetector": "^7.2.1"
+    "vike": "0.4.240"
   },
   "devDependencies": {
     "@types/node": "^20.8.3",
