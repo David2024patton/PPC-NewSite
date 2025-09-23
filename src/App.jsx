@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { Helmet } from "react-helmet-async";
-import { Routes, Route, useParams } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import Home from "./pages/Home";
@@ -86,10 +86,9 @@ const aboutPageSchema = {
   description: "Learn more about PPC Pilot and our mission.",
 };
 
-function App() {
+function App({ pageProps }) {
   const { t, i18n } = useTranslation();
-  const { lang } = useParams();
-  const currentLang = lang || i18n.language;
+  const currentLang = pageProps.lang || i18n.language;
 
   useEffect(() => {
     // Set HTML lang attribute
@@ -117,25 +116,7 @@ function App() {
         const link = document.createElement("link");
         link.setAttribute("rel", "alternate");
         link.setAttribute("hreflang", lang);
-
-        const currentPath = window.location.pathname;
-        const supportedLangs = ["en", "es", "fr", "de", "zh", "ru", "uk", "vi"];
-        const langRegex = new RegExp(`^/(${supportedLangs.join('|')})`);
-
-        let newHref;
-        if (langRegex.test(currentPath)) {
-          newHref = currentPath.replace(langRegex, `/${lang}`);
-        } else {
-          // Handle root path or paths without a language code
-          newHref = `/${lang}${currentPath === '/' ? '/' : currentPath}`;
-        }
-
-        // Ensure trailing slash for language root paths
-        if (newHref === `/${lang}`) {
-          newHref = `/${lang}/`;
-        }
-
-        link.setAttribute("href", newHref);
+        link.setAttribute("href", `/${lang}${window.location.pathname.substring(3)}`); // Adjust path for current language
         return link.outerHTML;
       })
       .join("");
