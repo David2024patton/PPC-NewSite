@@ -8,7 +8,7 @@ import App from "../src/App";
 // This function is responsible for server-side rendering of the React application.
 // It takes pageContext as input and returns an object with document HTML, title, and description.
 async function onRenderHtml(pageContext) {
-  const { pageProps, documentProps, urlOriginal } = pageContext;
+  const { Page, pageProps, documentProps, urlOriginal } = pageContext;
   const lang = pageContext.routeParams.lang || "en";
 
   // Set the language for i18n on the server side
@@ -50,7 +50,8 @@ async function onRenderHtml(pageContext) {
 // It sets the language in pageContext, which can then be used by the application.
 async function onBeforeRender(pageContext) {
   const lang = pageContext.routeParams.lang || "en";
-  return { pageContext: { pageProps: { lang } } };
+  const { urlPathname } = pageContext;
+  return { pageContext: { pageProps: { lang, urlPathname } } };
 }
 
 export { onBeforeRender, onRenderHtml };
