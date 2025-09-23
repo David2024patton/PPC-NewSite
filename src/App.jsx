@@ -117,7 +117,7 @@ function App({ pageProps }) {
         link.setAttribute("rel", "alternate");
         link.setAttribute("hreflang", lang);
 
-        const currentPath = window.location.pathname;
+        const currentPath = pageProps.urlPathname || window.location.pathname;
         const supportedLangs = ["en", "es", "fr", "de", "zh", "ru", "uk", "vi"];
         const langRegex = new RegExp(`^/(${supportedLangs.join('|')})`);
 
@@ -147,7 +147,8 @@ function App({ pageProps }) {
 
   // Determine which schemas to include based on the current route
   const schemasToInclude = [websiteSchema, localBusinessSchema];
-  if (window.location.pathname.includes("/about")) {
+  const currentPath = pageProps.urlPathname || window.location.pathname;
+  if (currentPath.includes("/about")) {
     schemasToInclude.push(aboutPageSchema);
   }
 
