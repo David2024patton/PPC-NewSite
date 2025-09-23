@@ -8,22 +8,25 @@ import App from "../src/App";
 // This function is responsible for server-side rendering of the React application.
 // It takes pageContext as input and returns an object with document HTML, title, and description.
 async function onRenderHtml(pageContext) {
-  const { Page, pageProps, documentProps } = pageContext;
+  const { pageProps, documentProps, urlOriginal } = pageContext;
   const lang = pageContext.routeParams.lang || "en";
 
   // Set the language for i18n on the server side
   await i18n.changeLanguage(lang);
 
+  // Pass the original URL to the PageShell for the StaticRouter
+  const pageShellContext = { ...pageContext, urlOriginal };
+
   // Render the React component to a string
   const pageHtml = ReactDOMServer.renderToString(
-    <PageShell pageContext={pageContext}>
+    <PageShell pageContext={pageShellContext}>
       <App {...pageProps} />
     </PageShell>
   );
 
   // Get title and description from documentProps or i18n translations
-  const title = documentProps.title || i18n.t("document.title");
-  const description = documentProps.description || i18n.t("document.description");
+  const title = documentProps?.title || i18n.t("document.title");
+  const description = documentProps?.description || i18n.t("document.description");
 
   // Construct the full HTML document
   const documentHtml = escapeInject`<!DOCTYPE html>

@@ -118,11 +118,20 @@ function App({ pageProps }) {
         link.setAttribute("hreflang", lang);
 
         const currentPath = window.location.pathname;
+        const supportedLangs = ["en", "es", "fr", "de", "zh", "ru", "uk", "vi"];
+        const langRegex = new RegExp(`^/(${supportedLangs.join('|')})`);
+
         let newHref;
-        if (currentPath === '/') {
-          newHref = `/${lang}/`;
+        if (langRegex.test(currentPath)) {
+          newHref = currentPath.replace(langRegex, `/${lang}`);
         } else {
-          newHref = `/${lang}${currentPath.substring(3)}`;
+          // Handle root path or paths without a language code
+          newHref = `/${lang}${currentPath === '/' ? '/' : currentPath}`;
+        }
+
+        // Ensure trailing slash for language root paths
+        if (newHref === `/${lang}`) {
+          newHref = `/${lang}/`;
         }
 
         link.setAttribute("href", newHref);
