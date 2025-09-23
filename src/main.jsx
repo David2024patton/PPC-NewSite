@@ -1,12 +1,23 @@
-import React from "react";
-import { createRoot } from "react-dom/client";
-import { start } from "vike/client";
-import "./index.css";
+import React from 'react';
+import { createRoot } from 'react-dom/client';
+import { BrowserRouter } from 'react-router-dom';
+import { HelmetProvider } from 'react-helmet-async';
+import { I18nextProvider } from 'react-i18next';
+import i18n from './i18n';
+import App from './App';
+import './index.css';
 
-// This is the client-side entry point for the Vike application.
-// It initializes the Vike client and starts the rendering process.
-async function main() {
-  await start();
-}
+const container = document.getElementById('root');
+const root = createRoot(container);
 
-main();
+root.render(
+  <React.StrictMode>
+    <BrowserRouter>
+      <HelmetProvider>
+        <I18nextProvider i18n={i18n}>
+          <App pageProps={{}} />
+        </I18nextProvider>
+      </HelmetProvider>
+    </BrowserRouter>
+  </React.StrictMode>
+);

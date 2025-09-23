@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { Helmet } from "react-helmet-async";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, useParams } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import Home from "./pages/Home";
@@ -86,9 +86,10 @@ const aboutPageSchema = {
   description: "Learn more about PPC Pilot and our mission.",
 };
 
-function App({ pageProps }) {
+function App() {
   const { t, i18n } = useTranslation();
-  const currentLang = pageProps.lang || i18n.language;
+  const { lang } = useParams();
+  const currentLang = lang || i18n.language;
 
   useEffect(() => {
     // Set HTML lang attribute
@@ -117,7 +118,7 @@ function App({ pageProps }) {
         link.setAttribute("rel", "alternate");
         link.setAttribute("hreflang", lang);
 
-        const currentPath = pageProps.urlPathname || window.location.pathname;
+        const currentPath = window.location.pathname;
         const supportedLangs = ["en", "es", "fr", "de", "zh", "ru", "uk", "vi"];
         const langRegex = new RegExp(`^/(${supportedLangs.join('|')})`);
 
@@ -147,8 +148,7 @@ function App({ pageProps }) {
 
   // Determine which schemas to include based on the current route
   const schemasToInclude = [websiteSchema, localBusinessSchema];
-  const currentPath = pageProps.urlPathname || window.location.pathname;
-  if (currentPath.includes("/about")) {
+  if (window.location.pathname.includes("/about")) {
     schemasToInclude.push(aboutPageSchema);
   }
 
