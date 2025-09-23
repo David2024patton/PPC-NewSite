@@ -3,7 +3,7 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import { motion, AnimatePresence, LayoutGroup } from "framer-motion";
 import { Menu, X, Phone, Shield, Globe, Check, LogIn, LogOut, UserCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { useLanguage } from "@/contexts/LanguageContext";
+import { useLanguage } from "../contexts/LanguageContext";
 import { useAuth } from "@/contexts/SupabaseAuthContext";
 import {
   DropdownMenu,

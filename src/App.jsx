@@ -28,8 +28,8 @@ import SilverCheckout from "./pages/SilverCheckout";
 import GoldCheckout from "./pages/GoldCheckout";
 import PlatinumCheckout from "./pages/PlatinumCheckout";
 import JsonLd from "./components/JsonLd";
-import { AuthProvider } from "./contexts/SupabaseAuthContext";
 import { Toaster } from "./components/ui/toaster";
+import { LanguageProvider } from "./contexts/LanguageContext";
 
 // Define website schema for JSON-LD
 const websiteSchema = {
@@ -86,9 +86,9 @@ const aboutPageSchema = {
   description: "Learn more about PPC Pilot and our mission.",
 };
 
-function App({ pageProps }) {
+function App() {
   const { t, i18n } = useTranslation();
-  const currentLang = pageProps.lang || i18n.language;
+  const currentLang = i18n.language;
 
   useEffect(() => {
     // Set HTML lang attribute
@@ -134,7 +134,7 @@ function App({ pageProps }) {
   }
 
   return (
-    <AuthProvider>
+    <>
       <Helmet>
         <title>{t("document.title")}</title>
         <meta name="description" content={t("document.description")} />
@@ -186,7 +186,7 @@ function App({ pageProps }) {
       </main>
       <Footer />
       <Toaster />
-    </AuthProvider>
+    </>
   );
 }
 

@@ -1,6 +1,6 @@
 import React from "react";
 
-const JsonLd = ({ schemas }) => {
+const JsonLd = ({ schemas = [] }) => {
   return (
     <>
       {schemas.map((schema, index) => (

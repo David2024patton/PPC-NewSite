@@ -90,7 +90,7 @@ const serviceAreasPageData = {
 
 const ServiceAreas = () => {
   const { currentLanguage } = useLanguage();
-  const currentLangData = serviceAreasPageData[currentLanguage];
+  const currentLangData = serviceAreasPageData[currentLanguage] || serviceAreasPageData["en"];
 
   return (
     <>

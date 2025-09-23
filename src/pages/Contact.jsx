@@ -152,6 +152,7 @@ const contactPageSchema = {
 
 const Contact = () => {
   const { language } = useLanguage();
+  const currentLangData = contactPageData[language] || contactPageData["en"];
   const [formData, setFormData] = useState({
     name: "",
     email: "",
