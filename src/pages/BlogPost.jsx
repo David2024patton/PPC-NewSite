@@ -13,153 +13,40 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
-import { useLanguage } from "../contexts/LanguageContext";
 
 const BlogPost = () => {
   const { postSlug } = useParams();
   const [post, setPost] = useState(null);
   const [relatedPosts, setRelatedPosts] = useState([]);
   const [loading, setLoading] = useState(true);
-  const { language } = useLanguage();
 
-  const blogPostPageData = {
-    en: {
-      loadingMessage: "Loading post...",
-      postNotFound: {
-        title: "Post Not Found",
-        description: "The requested blog post could not be found.",
-        backToBlog: "Back to Blog",
-      },
-      share: "Share:",
-      authorBox: {
-        aboutAuthor: "About the Author:",
-        description: (author) =>
-          `As a certified pest control expert at Patriot Pest Control Co, ${author} brings years of field experience and a commitment to providing safe, effective solutions for our community.`,
-      },
-      relatedPosts: {
-        title: "Related Posts",
-        moreArticles: (category) => `More articles about ${category.toLowerCase()}`,
-        readMore: "Read More",
-      },
-      cta: {
-        title: "Ready to Protect Your Property?",
-        description:
-          "Don't wait for pest problems to get worse. Contact our experts today for professional pest control solutions.",
-        getFreeQuote: "Get Free Quote",
-        callUs: "Call (509) 471-5767",
-      },
-      faqSectionTitle: "Frequently Asked Questions",
+  const pageData = {
+    loadingMessage: "Loading post...",
+    postNotFound: {
+      title: "Post Not Found",
+      description: "The requested blog post could not be found.",
+      backToBlog: "Back to Blog",
     },
-    es: {
-      loadingMessage: "Cargando publicación...",
-      postNotFound: {
-        title: "Publicación no Encontrada",
-        description: "La publicación de blog solicitada no pudo ser encontrada.",
-        backToBlog: "Volver al Blog",
-      },
-      share: "Compartir:",
-      authorBox: {
-        aboutAuthor: "Sobre el Autor:",
-        description: (author) =>
-          `Como experto certificado en control de plagas en Patriot Pest Control Co, ${author} aporta años de experiencia en el campo y un compromiso con la provisión de soluciones seguras y efectivas para nuestra comunidad.`,
-      },
-      relatedPosts: {
-        title: "Publicaciones Relacionadas",
-        moreArticles: (category) => `Más artículos sobre ${category.toLowerCase()}`,
-        readMore: "Leer Más",
-      },
-      cta: {
-        title: "¿Listo para Proteger tu Propiedad?",
-        description:
-          "No esperes a que los problemas de plagas empeoren. Contacta a nuestros expertos hoy para soluciones profesionales de control de plagas.",
-        getFreeQuote: "Obtener Presupuesto Gratis",
-        callUs: "Llamar (509) 471-5767",
-      },
-      faqSectionTitle: "Preguntas Frecuentes",
+    share: "Share:",
+    authorBox: {
+      aboutAuthor: "About the Author:",
+      description: (author) =>
+        `As a certified pest control expert at Patriot Pest Control Co, ${author} brings years of field experience and a commitment to providing safe, effective solutions for our community.`,
     },
-    fr: {
-      loadingMessage: "Chargement de l'article...",
-      postNotFound: {
-        title: "Article non Trouvé",
-        description: "L'article de blog demandé n'a pas pu être trouvé.",
-        backToBlog: "Retour au Blog",
-      },
-      share: "Partager:",
-      authorBox: {
-        aboutAuthor: "À propos de l'auteur:",
-        description: (author) =>
-          `En tant qu'expert certifié en contrôle parasitaire chez Patriot Pest Control Co, ${author} apporte des années d'expérience sur le terrain et un engagement à fournir des solutions sûres et efficaces pour notre communauté.`,
-      },
-      relatedPosts: {
-        title: "Articles Similaires",
-        moreArticles: (category) => `Plus d'articles sur ${category.toLowerCase()}`,
-        readMore: "Lire la suite",
-      },
-      cta: {
-        title: "Prêt à Protéger Votre Propriété ?",
-        description:
-          "N'attendez pas que les problèmes de parasites s'aggravent. Contactez nos experts dès aujourd'hui pour des solutions professionnelles de contrôle parasitaire.",
-        getFreeQuote: "Obtenir un Devis Gratuit",
-        callUs: "Appeler (509) 471-5767",
-      },
-      faqSectionTitle: "Questions Fréquemment Posées",
+    relatedPosts: {
+      title: "Related Posts",
+      moreArticles: (category) => `More articles about ${category.toLowerCase()}`,
+      readMore: "Read More",
     },
-    de: {
-      loadingMessage: "Beitrag wird geladen...",
-      postNotFound: {
-        title: "Beitrag nicht gefunden",
-        description: "Der angeforderte Blog-Beitrag konnte nicht gefunden werden.",
-        backToBlog: "Zurück zum Blog",
-      },
-      share: "Teilen:",
-      authorBox: {
-        aboutAuthor: "Über den Autor:",
-        description: (author) =>
-          `Als zertifizierter Schädlingsbekämpfungsexperte bei Patriot Pest Control Co bringt ${author} jahrelange Felderfahrung und das Engagement mit, sichere und effektive Lösungen für unsere Gemeinschaft anzubieten.`,
-      },
-      relatedPosts: {
-        title: "Ähnliche Beiträge",
-        moreArticles: (category) => `Weitere Artikel über ${category.toLowerCase()}`,
-        readMore: "Weiterlesen",
-      },
-      cta: {
-        title: "Bereit, Ihr Eigentum zu schützen?",
-        description:
-          "Warten Sie nicht, bis sich Schädlingsprobleme verschlimmern. Kontaktieren Sie noch heute unsere Experten für professionelle Schädlingsbekämpfungslösungen.",
-        getFreeQuote: "Kostenloses Angebot erhalten",
-        callUs: "Anrufen (509) 471-5767",
-      },
-      faqSectionTitle: "Häufig gestellte Fragen",
+    cta: {
+      title: "Ready to Protect Your Property?",
+      description:
+        "Don't wait for pest problems to get worse. Contact our experts today for professional pest control solutions.",
+      getFreeQuote: "Get Free Quote",
+      callUs: "Call (509) 471-5767",
     },
-    zh: {
-      loadingMessage: "正在加载文章...",
-      postNotFound: {
-        title: "文章未找到",
-        description: "未找到请求的博客文章。",
-        backToBlog: "返回博客",
-      },
-      share: "分享:",
-      authorBox: {
-        aboutAuthor: "关于作者:",
-        description: (author) =>
-          `作为Patriot Pest Control Co的认证害虫控制专家，${author}拥有多年的现场经验，并致力于为我们的社区提供安全、有效的解决方案。`,
-      },
-      relatedPosts: {
-        title: "相关文章",
-        moreArticles: (category) => `更多关于${category.toLowerCase()}的文章`,
-        readMore: "阅读更多",
-      },
-      cta: {
-        title: "准备好保护您的财产了吗？",
-        description: "不要等到害虫问题恶化。立即联系我们的专家，获取专业的害虫控制解决方案。",
-        getFreeQuote: "获取免费报价",
-        callUs: "致电 (509) 471-5767",
-      },
-      faqSectionTitle: "常见问题",
-    },
+    faqSectionTitle: "Frequently Asked Questions",
   };
-
-  const pageData = blogPostPageData[language] || blogPostPageData.en;
 
   useEffect(() => {
     const fetchPost = async () => {

@@ -5,11 +5,8 @@ import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Shield, CheckCircle, Phone, Star, Users, Clock, Award } from "lucide-react";
 import JsonLd from "@/components/JsonLd";
-import { useTranslation } from "react-i18next";
 
 const Home = () => {
-  const { t } = useTranslation();
-
   return (
     <motion.div
       initial={{ opacity: 0 }}
@@ -19,9 +16,9 @@ const Home = () => {
       className="home-page"
     >
       <Helmet>
-        <title>{t("home.helmetTitle")}</title>
-        <meta name="description" content={t("home.metaDescription")} />
-        <meta name="keywords" content={t("home.metaKeywords")} />
+        <title>PPC - Professional Pest Control</title>
+        <meta name="description" content="Professional Pest Control services for residential and commercial properties. We offer effective and eco-friendly pest management solutions." />
+        <meta name="keywords" content="pest control, exterminator, residential pest control, commercial pest control, termite control, rodent control, bed bug control, mosquito control, professional pest control, eco-friendly pest control" />
       </Helmet>
 
       <JsonLd
@@ -29,23 +26,23 @@ const Home = () => {
           {
             "@context": "https://schema.org",
             "@type": "LocalBusiness",
-            name: t("jsonLd.localBusiness.name"),
-            image: t("jsonLd.localBusiness.image"),
-            "@id": t("jsonLd.localBusiness.id"),
-            url: t("jsonLd.localBusiness.url"),
-            telephone: t("jsonLd.localBusiness.telephone"),
+            name: "PPC - Professional Pest Control",
+            image: "https://www.example.com/logo.png",
+            "@id": "https://www.example.com",
+            url: "https://www.example.com",
+            telephone: "+15094715767",
             address: {
               "@type": "PostalAddress",
-              streetAddress: t("jsonLd.localBusiness.address.streetAddress"),
-              addressLocality: t("jsonLd.localBusiness.address.addressLocality"),
-              addressRegion: t("jsonLd.localBusiness.address.addressRegion"),
-              postalCode: t("jsonLd.localBusiness.address.postalCode"),
-              addressCountry: t("jsonLd.localBusiness.address.addressCountry"),
+              streetAddress: "123 Pest Control Rd",
+              addressLocality: "Spokane",
+              addressRegion: "WA",
+              postalCode: "99201",
+              addressCountry: "US",
             },
             geo: {
               "@type": "GeoCoordinates",
-              latitude: t("jsonLd.localBusiness.geo.latitude"),
-              longitude: t("jsonLd.localBusiness.geo.longitude"),
+              latitude: "47.658780",
+              longitude: "-117.426048",
             },
             openingHoursSpecification: [
               {
@@ -68,21 +65,21 @@ const Home = () => {
               },
             ],
             sameAs: [
-              t("jsonLd.localBusiness.sameAs.0"),
-              t("jsonLd.localBusiness.sameAs.1"),
-              t("jsonLd.localBusiness.sameAs.2"),
+              "https://www.facebook.com/PPCpestcontrol",
+              "https://twitter.com/PPCpestcontrol",
+              "https://www.instagram.com/PPCpestcontrol",
             ],
           },
           {
             "@context": "https://schema.org",
             "@type": "WebSite",
-            name: t("jsonLd.website.name"),
-            url: t("jsonLd.website.url"),
+            name: "PPC - Professional Pest Control",
+            url: "https://www.example.com",
             potentialAction: {
               "@type": "SearchAction",
               target: {
                 "@type": "EntryPoint",
-                urlTemplate: t("jsonLd.website.potentialAction.target.urlTemplate"),
+                urlTemplate: "https://www.example.com/search?q={search_term_string}",
               },
               "query-input": "required name=search_term_string",
             },
@@ -97,13 +94,13 @@ const Home = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
           >
-            <h1 className="text-4xl md:text-6xl font-bold mb-6">{t("home.heroTitle")}</h1>
+            <h1 className="text-4xl md:text-6xl font-bold mb-6">Your Trusted Partner in Pest Control</h1>
             <p className="text-xl mb-8 text-blue-100 max-w-3xl mx-auto">
-              {t("home.heroSubtitle")}
+              Effective, eco-friendly, and reliable pest management solutions for a healthier home and business.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button asChild size="lg" className="bg-white text-blue-600 hover:bg-gray-100">
-                <Link to="/prices">{t("home.quoteButton")}</Link>
+                <Link to="/prices">Get a Free Quote</Link>
               </Button>
               <Button
                 asChild
@@ -115,7 +112,7 @@ const Home = () => {
                   className="flex items-center justify-center space-x-2 text-white"
                 >
                   <Phone className="h-5 w-5" />
-                  <span className="font-bold">{t("home.callButton")}</span>
+                  <span className="font-bold">Call Us Today</span>
                 </a>
               </Button>
             </div>
@@ -135,19 +132,19 @@ const Home = () => {
             viewport={{ once: true }}
           >
             <h2 className="text-3xl font-bold text-gray-900 mb-6">
-              {t("home.aboutTitle")}
+              About Professional Pest Control
             </h2>
-            <h3 className="text-xl text-blue-600 mb-4">{t("home.aboutSubtitle")}</h3>
+            <h3 className="text-xl text-blue-600 mb-4">Your Local Experts in Pest Management</h3>
             <p className="text-gray-600 mb-6 max-w-3xl mx-auto">
-              {t("home.aboutDescription")}
+              PPC is dedicated to providing top-tier pest control services. With years of experience, our certified technicians use the latest methods to ensure your property is pest-free and safe.
             </p>
             <div className="flex flex-wrap justify-center gap-x-6 gap-y-4 mb-6 max-w-4xl mx-auto">
               {[ // Features array for About section
-                { icon: Award, title: t("home.features.certifiedExpert.title") },
-                { icon: Users, title: t("home.features.professionalTeam.title") },
-                { icon: CheckCircle, title: t("home.features.costEffective.title") },
-                { icon: Clock, title: t("home.features.saveTimeMoney.title") },
-                { icon: Phone, title: t("home.features.premiumSupport.title") },
+                { icon: Award, title: "Certified Experts" },
+                { icon: Users, title: "Professional Team" },
+                { icon: CheckCircle, title: "Cost-Effective Solutions" },
+                { icon: Clock, title: "Save Time & Money" },
+                { icon: Phone, title: "Premium Support" },
               ].map((feature, index) => (
                 <div key={index} className="flex items-center space-x-3">
                   <feature.icon className="h-5 w-5 text-blue-600" />
@@ -157,7 +154,7 @@ const Home = () => {
             </div>
             <Link to="/about">
               <Button className="bg-blue-600 hover:bg-blue-700">
-                {t("home.exploreAboutUs")}
+                Explore About Us
               </Button>
             </Link>
           </motion.div>
@@ -176,48 +173,48 @@ const Home = () => {
           className="text-center mb-12"
         >
           <h2 className="text-3xl font-bold text-gray-900 mb-4">
-            {t("home.servicesTitle")}
+            Our Comprehensive Pest Control Services
           </h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            {t("home.servicesSubtitle")}
+            We offer a wide range of pest control services tailored to meet your specific needs.
           </p>
         </motion.div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {[ // Services array
             {
-              title: t("home.services.residential.title"),
-              description: t("home.services.residential.description"),
+              title: "Residential Pest Control",
+              description: "Protect your home and family from unwanted pests with our effective residential solutions.",
               icon: "🏠",
               slug: "residential-pest-control",
             },
             {
-              title: t("home.services.commercial.title"),
-              description: t("home.services.commercial.description"),
+              title: "Commercial Pest Control",
+              description: "Maintain a pest-free environment for your business with our discreet and efficient commercial services.",
               icon: "🏢",
               slug: "commercial-pest-control",
             },
             {
-              title: t("home.services.termite.title"),
-              description: t("home.services.termite.description"),
+              title: "Termite Control",
+              description: "Comprehensive termite inspection, treatment, and prevention to safeguard your property.",
               icon: "🐛",
               slug: "termite-control",
             },
             {
-              title: t("home.services.rodent.title"),
-              description: t("home.services.rodent.description"),
+              title: "Rodent Control",
+              description: "Effective rodent extermination and exclusion services to keep your property free from rats and mice.",
               icon: "🐭",
               slug: "rodent-control",
             },
             {
-              title: t("home.services.bedBug.title"),
-              description: t("home.services.bedBug.description"),
+              title: "Bed Bug Control",
+              description: "Specialized treatments to eliminate bed bugs and ensure a peaceful night's sleep.",
               icon: "🛏️",
               slug: "bed-bug-control",
             },
             {
-              title: t("home.services.mosquito.title"),
-              description: t("home.services.mosquito.description"),
+              title: "Mosquito Control",
+              description: "Reduce mosquito populations around your property for a more enjoyable outdoor experience.",
               icon: "🦟",
               slug: "mosquito-control",
             },
@@ -235,7 +232,7 @@ const Home = () => {
               <p className="text-gray-600 mb-4">{service.description}</p>
               <Link to={`/services/${service.slug}`}>
                 <Button variant="outline" className="w-full">
-                  {t("home.exploreAboutUs")}
+                  Learn More
                 </Button>
               </Link>
             </motion.div>
@@ -254,15 +251,15 @@ const Home = () => {
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
           >
-            <h2 className="text-3xl font-bold mb-6">{t("home.proactiveControlTitle")}</h2>
+            <h2 className="text-3xl font-bold mb-6">Proactive Pest Control for Lasting Peace of Mind</h2>
             <p className="text-blue-100 mb-6 max-w-3xl mx-auto">
-              {t("home.proactiveControlParagraph1")}
+              Don't wait for pests to become a problem. Our proactive approach identifies and addresses potential infestations before they escalate, saving you time, money, and stress.
             </p>
             <p className="text-blue-100 mb-8 max-w-3xl mx-auto">
-              {t("home.proactiveControlParagraph2")}
+              With regular inspections and preventative treatments, we create a protective barrier around your property, ensuring long-term pest freedom. Enjoy a healthier, safer environment year-round.
             </p>
             <Button asChild size="lg" className="bg-white text-blue-600 hover:bg-gray-100">
-              <Link to="/contact">{t("home.contactUsImmediately")}</Link>
+              <Link to="/contact">Contact Us Immediately</Link>
             </Button>
           </motion.div>
         </div>
@@ -280,9 +277,9 @@ const Home = () => {
           className="text-center mb-12"
         >
           <h2 className="text-3xl font-bold text-gray-900 mb-4">
-            {t("home.whyChooseUsTitle")}
+            Why Choose Professional Pest Control?
           </h2>
-          <p className="text-xl text-gray-600">{t("home.whyChooseUsSubtitle")}</p>
+          <p className="text-xl text-gray-600">Experience the difference with our dedicated team and superior service.</p>
         </motion.div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -295,9 +292,9 @@ const Home = () => {
           >
             <Award className="h-12 w-12 text-blue-600 mx-auto mb-4" />
             <h3 className="text-xl font-semibold text-gray-900 mb-3">
-              {t("home.expertiseTitle")}
+              Unmatched Expertise
             </h3>
-            <p className="text-gray-600">{t("home.expertiseDescription")}</p>
+            <p className="text-gray-600">Our team consists of highly trained and certified pest control specialists with extensive knowledge of local pest behaviors and effective treatment strategies.</p>
           </motion.div>
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -308,9 +305,9 @@ const Home = () => {
           >
             <Shield className="h-12 w-12 text-blue-600 mx-auto mb-4" />
             <h3 className="text-xl font-semibold text-gray-900 mb-3">
-              {t("home.comprehensiveServicesTitle")}
+              Comprehensive Services
             </h3>
-            <p className="text-gray-600">{t("home.comprehensiveServicesDescription")}</p>
+            <p className="text-gray-600">From common household pests to complex commercial infestations, we offer a full spectrum of services, including inspection, treatment, and preventative measures.</p>
           </motion.div>
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -321,9 +318,9 @@ const Home = () => {
           >
             <Star className="h-12 w-12 text-blue-600 mx-auto mb-4" />
             <h3 className="text-xl font-semibold text-gray-900 mb-3">
-              {t("home.customerSatisfactionTitle")}
+              Guaranteed Customer Satisfaction
             </h3>
-            <p className="text-gray-600">{t("home.customerSatisfactionDescription")}</p>
+            <p className="text-gray-600">Your peace of mind is our priority. We stand behind our work with a satisfaction guarantee, ensuring effective results and exceptional service every time.</p>
           </motion.div>
         </div>
       </div>
@@ -338,12 +335,12 @@ const Home = () => {
           transition={{ duration: 0.6 }}
           viewport={{ once: true }}
         >
-          <h2 className="text-3xl font-bold mb-4">{t("home.bestServiceTitle")}</h2>
+          <h2 className="text-3xl font-bold mb-4">Ready for a Pest-Free Environment?</h2>
           <p className="text-xl text-gray-300 mb-8 max-w-3xl mx-auto">
-            {t("home.bestServiceDescription")}
+            Contact us today for a free consultation and let our experts provide you with the best pest control solutions.
           </p>
           <Button asChild size="lg" className="bg-blue-600 hover:bg-blue-700">
-            <Link to="/contact">{t("home.quoteButton")}</Link>
+            <Link to="/contact">Get a Free Quote</Link>
           </Button>
         </motion.div>
       </div>

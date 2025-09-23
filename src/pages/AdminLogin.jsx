@@ -6,7 +6,6 @@ import { Lock, User, Eye, EyeOff } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useAuth } from "@/contexts/SupabaseAuthContext";
 import { useToast } from "@/components/ui/use-toast";
-import { useLanguage } from "@/contexts/LanguageContext";
 
 const AdminLogin = () => {
   const [credentials, setCredentials] = useState({
@@ -19,99 +18,24 @@ const AdminLogin = () => {
   const { signIn } = useAuth();
   const navigate = useNavigate();
   const { toast } = useToast();
-  const { language } = useLanguage();
 
-  const adminLoginPageData = {
-    en: {
-      helmet: {
-        title: "Admin Login - Patriot Pest Control Co",
-        description: "Admin login portal for Patriot Pest Control Co website management.",
-        robots: "noindex, nofollow",
-      },
-      heading: "Admin Login",
-      subheading: "Sign in to access the admin dashboard",
-      emailLabel: "Email",
-      emailPlaceholder: "Enter your email",
-      passwordLabel: "Password",
-      passwordPlaceholder: "Enter your password",
-      signInButton: "Sign In",
-      signingInButton: "Signing in...",
-      loginSuccessTitle: "Login Successful",
-      loginSuccessDescription: "Welcome to the admin dashboard!",
+  const pageData = {
+    helmet: {
+      title: "Admin Login - Patriot Pest Control Co",
+      description: "Admin login portal for Patriot Pest Control Co website management.",
+      robots: "noindex, nofollow",
     },
-    es: {
-      helmet: {
-        title: "Inicio de Sesión de Administrador - Patriot Pest Control Co",
-        description:
-          "Portal de inicio de sesión de administrador para la gestión del sitio web de Patriot Pest Control Co.",
-        robots: "noindex, nofollow",
-      },
-      heading: "Inicio de Sesión de Administrador",
-      subheading: "Inicia sesión para acceder al panel de administración",
-      emailLabel: "Correo Electrónico",
-      emailPlaceholder: "Introduce tu correo electrónico",
-      passwordLabel: "Contraseña",
-      passwordPlaceholder: "Introduce tu contraseña",
-      signInButton: "Iniciar Sesión",
-      signingInButton: "Iniciando sesión...",
-      loginSuccessTitle: "Inicio de Sesión Exitoso",
-      loginSuccessDescription: "¡Bienvenido al panel de administración!",
-    },
-    fr: {
-      helmet: {
-        title: "Connexion Admin - Patriot Pest Control Co",
-        description:
-          "Portail de connexion administrateur pour la gestion du site web de Patriot Pest Control Co.",
-        robots: "noindex, nofollow",
-      },
-      heading: "Connexion Admin",
-      subheading: "Connectez-vous pour accéder au tableau de bord admin",
-      emailLabel: "Email",
-      emailPlaceholder: "Entrez votre email",
-      passwordLabel: "Mot de passe",
-      passwordPlaceholder: "Entrez votre mot de passe",
-      signInButton: "Se Connecter",
-      signingInButton: "Connexion en cours...",
-      loginSuccessTitle: "Connexion Réussie",
-      loginSuccessDescription: "Bienvenue sur le tableau de bord admin !",
-    },
-    de: {
-      helmet: {
-        title: "Admin-Login - Patriot Pest Control Co",
-        description: "Admin-Login-Portal für die Website-Verwaltung von Patriot Pest Control Co.",
-        robots: "noindex, nofollow",
-      },
-      heading: "Admin-Login",
-      subheading: "Melden Sie sich an, um auf das Admin-Dashboard zuzugreifen",
-      emailLabel: "E-Mail",
-      emailPlaceholder: "Geben Sie Ihre E-Mail-Adresse ein",
-      passwordLabel: "Passwort",
-      passwordPlaceholder: "Geben Sie Ihr Passwort ein",
-      signInButton: "Anmelden",
-      signingInButton: "Meldet sich an...",
-      loginSuccessTitle: "Anmeldung Erfolgreich",
-      loginSuccessDescription: "Willkommen im Admin-Dashboard!",
-    },
-    zh: {
-      helmet: {
-        title: "管理员登录 - Patriot Pest Control Co",
-        description: "Patriot Pest Control Co 网站管理的管理员登录门户。",
-        robots: "noindex, nofollow",
-      },
-      heading: "管理员登录",
-      subheading: "登录以访问管理员仪表板",
-      emailLabel: "电子邮件",
-      emailPlaceholder: "输入您的电子邮件",
-      passwordLabel: "密码",
-      passwordPlaceholder: "输入您的密码",
-      signInButton: "登录",
-      signingInButton: "正在登录...",
-      loginSuccessTitle: "登录成功",
-      loginSuccessDescription: "欢迎来到管理员仪表板！",
-    },
+    heading: "Admin Login",
+    subheading: "Sign in to access the admin dashboard",
+    emailLabel: "Email",
+    emailPlaceholder: "Enter your email",
+    passwordLabel: "Password",
+    passwordPlaceholder: "Enter your password",
+    signInButton: "Sign In",
+    signingInButton: "Signing in...",
+    loginSuccessTitle: "Login Successful",
+    loginSuccessDescription: "Welcome to the admin dashboard!",
   };
-
-  const pageData = adminLoginPageData[language] || adminLoginPageData.en;
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;

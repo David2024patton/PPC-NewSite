@@ -6,13 +6,12 @@ import { Button } from "@/components/ui/button";
 import { MapPin, Phone, CheckCircle, Clock, Shield } from "lucide-react";
 import { serviceAreaData } from "@/data/serviceAreasData";
 import JsonLd from "@/components/JsonLd";
-import { useLanguage } from "../contexts/LanguageContext";
 
 const ServiceArea = () => {
   const { areaSlug } = useParams();
-  const { language } = useLanguage();
 
-  const area = serviceAreaData[areaSlug][language];
+  // Fallback to English if the specific area or language data is not found
+  const area = serviceAreaData[areaSlug] ? serviceAreaData[areaSlug]["en"] : null;
 
   if (!area) {
     return (
